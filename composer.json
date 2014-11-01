@@ -1,0 +1,19 @@
+{
+    "name" : "DESIGN PATTERNS - Code Education",
+    "authors" : [
+        {
+            "name" : "Cristiano Araujo",
+            "email" : "cristiano@teste.com"
+        }
+    ],
+    "license" : "MIT",
+
+    "require" : {
+        "php" : ">=5.5"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "" : "src/"
+        }
+    }
+}
