@@ -2,82 +2,105 @@
     Apresenta os dados de formulário na index
 -->
 <div class="col-md-12">
-    <div class="col-sm-offset-1 col-md-6">
-        <?php
-        use Code\Classes\Forms\Form;
-        use Code\Classes\Forms\Types\Label;
-        use Code\Classes\Forms\Types\Entry;
-        use Code\Classes\Forms\Element;
-        use Code\Classes\Forms\Types\TextArea;
-        use Code\Classes\Forms\Types\Button;
-        use Code\Classes\Forms\Types\Action;
+    <div class="col-sm-offset-3 col-md-6">
+<?php
+    use Code\Classes\Forms\Utils\Element;
+    use Code\Classes\Forms\Types\Form;
+    use Code\Classes\Forms\Types\Label;
+    use Code\Classes\Forms\Types\Tag;
+    use Code\Classes\Validation\Validator;
+    use Code\Classes\Http\Request;
 
-        /**
-         * Formulário
-         */
-        $elementos  = new Element('form');
-        $elementos1 = new Element('label');
-        $elementos2 = new Element('label');
-        $elementos3 = new Element('label');
-        $elementos4 = new Element('textarea');
-        $elementos5 = new Element('input');
-        $elementos6 = new Element('input');
-        $form = new Form('Form_contato');
-        $form->render($elementos);
+    $request    = new Request();
+    $validation = new Validator($request);
+    $elemento   = new Element();
 
-        echo "<div class=\"form-group\">";
-            // input nome
-            $titulo = new Label($elementos1, 'Nome:');
-            $titulo->setClass('col-sm-2 control-label');
-            $titulo->render();
-            echo "<div class=\"col-sm-10\">";
-                $nome = new Entry($elementos5 ,'nome');
-                $nome->setNome('nome');
-                $nome->setPlaceholder('Nome');
-                $nome->setClass('form-control');
-                $nome->render();
-            echo "</div>";
-        echo "</div>";
+    $form = new Form($validation, 'form');
+    $form->createField($elemento);
 
-        echo "<div class=\"form-group\">";
-            // input email
-            $titulo = new Label($elementos2, 'E-mail:');
-            $titulo->setClass('col-sm-2 control-label');
-            $titulo->render();
-            echo "<div class=\"col-sm-10\">";
-                $email = new Entry($elementos5,'email');
-                $email->setNome('email');
-                $email->setPlaceholder('E-mail');
-                $email->setClass('form-control');
-                $email->render();
-            echo "</div>";
-        echo "</div>";
+    echo "<div class=\"form-group\">";
 
-        echo "<div class=\"form-group\">";
-            // input textarea mensagem
-            $titulo = new Label($elementos3, 'Mensagem:');
-            $titulo->setClass('col-sm-2 control-label');
-            $titulo->render();
-            echo "<div class=\"col-sm-10\">";
-                $text = new TextArea($elementos4, '');
-                $text->setPlaceholder('Mensagem');
-                $text->setNome('mensagem');
-                $text->setClass('form-control');
-                $text->render();
-            echo "</div>";
-        echo "</div>";
+    $elemento1  = new Element();
+    $label      = new Label('label');
+    $label->setClass('col-sm-2 control-label');
+    $label->createField($elemento1);
+    $label->setParam("Nome:");
+    echo $label->getParam();
+    $label->close($elemento1);
+    
+    echo "<div class=\"col-sm-10\">";
 
-        // botão enviar
-        echo "<div class=\"form-group\">";
-            echo "<div class=\"col-sm-offset-2 col-sm-10\">";
-                $action = new Button($elementos6,'btn btn-primary');
-                $action->setAction( new Action('onSend'), 'Enviar');
-                $action->render();
-            echo "</div>";
-        echo "</div>";
-        ?>
+    $elemento2  = new Element();
+    $input      = new Tag('input');
+    $input->setType('text');
+    $input->setClass('form-control');
+    $input->setName('nome');
+    $input->setPlaceholder('Nome');
+    $input->createField($elemento2);
+    
+    
+    echo "</div>\n";
+    echo "</div>\n";
+
+    echo "<div class=\"form-group\">";
+
+    $label->createField($elemento1);
+    $label->setParam("E-mail:");
+    echo $label->getParam();
+    $label->setClass('col-sm-2 control-label');
+    $label->close($elemento1);
+    
+    echo "<div class=\"col-sm-10\">";
+
+    $input->setType('text');
+    $input->setClass('form-control');
+    $input->setName('email');
+    $input->setPlaceholder('E-mail');
+    $input->createField($elemento2);
+    
+    echo "</div>\n";
+    echo "</div>\n";
+
+
+    echo "<div class=\"form-group\">";
+
+    $label->createField($elemento1);
+    $label->setParam("Mensagem:");
+    echo $label->getParam();
+    $label->setClass('col-sm-2 control-label');
+    $label->close($elemento1);
+    
+    echo "<div class=\"col-sm-10\">";
+
+    $textarea = new Tag('textarea');
+    $textarea->setClass('form-control');
+    $textarea->setType('text');
+    $textarea->setName('mesagem');
+    $textarea->setPlaceholder('Mensagem');
+    $textarea->createField($elemento2);
+    $textarea->close($elemento);
+    
+    echo "</div>\n";
+    echo "</div>\n";
+
+    echo "<div class=\"form-group\">";
+    echo "<div class=\"col-sm-offset-2 col-sm-10\">";
+
+    $button = new Tag('input');
+    $button->setClass('btn btn-primary');
+    $button->setType('submit');
+    $button->setName('enviar');
+    $button->setPlaceholder('Enviar');
+    $button->createField($elemento2);
+    $button->close($elemento);
+    
+    echo "</div>\n";
+    echo "</div>\n";
+    $form->close($elemento);
+?>
     </div>
 </div>
+
 <?php
 if (isset($_POST['enviar'])){
     echo '<pre>';

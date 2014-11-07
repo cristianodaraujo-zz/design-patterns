@@ -1,29 +1,38 @@
 <?php
 /**
- * Criação do tipo Label
+ * Criação da classe Tag
  */
 namespace Code\Classes\Forms\Types;
 use Code\Classes\Forms\Utils\Element;
 use Code\Classes\Forms\Interfaces\FormInterface;
 
-
-class Label implements FormInterface
+class Tag implements FormInterface
 {
     public $nome;
-    public $param;
+    public $name;
+    public $type;
+    public $placeholder;
     public $class;
+    public $value;
             
     function __construct($nome)
     {
         $this->nome = $nome;
     }
     
-    public function getParam() {
-        return $this->param;
+    public function setType($type) 
+    {
+        $this->type = $type;
     }
 
-    public function setParam($param) {
-        $this->param = $param;
+    public function setPlaceholder($placeholder)
+    {
+        $this->placeholder = $placeholder;
+    }
+
+    public function setName($name) 
+    {
+        $this->name = $name;
     }
     
     public function setClass($class) {
@@ -35,6 +44,9 @@ class Label implements FormInterface
         $tag = $elementos;
         $tag->tag = $this->nome;
         $tag->class = $this->class;
+        $tag->type = $this->type;
+        $tag->name = $this->name;
+        $tag->placeholder = $this->placeholder;
         $tag->render();
     }
     
