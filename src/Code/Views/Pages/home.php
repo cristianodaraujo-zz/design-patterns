@@ -8,6 +8,7 @@
     use Code\Classes\Forms\Types\Form;
     use Code\Classes\Forms\Types\Label;
     use Code\Classes\Forms\Types\Tag;
+    use Code\Classes\Forms\Types\Fieldsets;
     use Code\Classes\Validation\Validator;
     use Code\Classes\Http\Request;
 
@@ -17,6 +18,19 @@
 
     $form = new Form($validation, 'form');
     $form->createField($elemento);
+
+    $elemento2  = new Element();
+    $fieldset = new Fieldsets('fieldset');
+    $fieldset->setValue('formcontato');
+    $fieldset->createField($elemento2);
+
+    $elemento1  = new Element();
+    $legend = new Label('legend');
+    $legend->setClass('col-sm-12');
+    $legend->createField($elemento1);
+    $legend->setParam('Formulário de Contato');
+    echo $legend->getParam();
+    $legend->close($elemento1);
 
     echo "<div class=\"form-group\">";
 
