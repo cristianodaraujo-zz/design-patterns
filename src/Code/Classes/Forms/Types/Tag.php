@@ -11,7 +11,8 @@ class Tag implements FormInterface
     public $nome;
     public $name;
     public $type;
-    public $placeholder;
+    public $valor;
+    //public $placeholder;
     public $class;
     public $value;
             
@@ -25,10 +26,15 @@ class Tag implements FormInterface
         $this->type = $type;
     }
 
-    public function setPlaceholder($placeholder)
+    public function setValue($value)
     {
-        $this->placeholder = $placeholder;
+        $this->value = $value;
+            
     }
+    // public function setPlaceholder($placeholder)
+    // {
+    //     $this->placeholder = $placeholder;
+    // }
 
     public function setName($name) 
     {
@@ -42,11 +48,12 @@ class Tag implements FormInterface
     public function createField(Element $elementos)
     {
         $tag = $elementos;
-        $tag->tag = $this->nome;
+        $tag->tag   = $this->nome;
         $tag->class = $this->class;
-        $tag->type = $this->type;
-        $tag->name = $this->name;
-        $tag->placeholder = $this->placeholder;
+        $tag->type  = $this->type;
+        $tag->name  = $this->name;
+        $tag->value = $this->value;
+        //$tag->placeholder = $this->placeholder;
         $tag->render();
     }
     
