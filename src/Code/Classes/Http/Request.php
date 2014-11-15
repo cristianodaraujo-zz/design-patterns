@@ -7,5 +7,5 @@ namespace Code\Classes\Http;
 
 class Request
 {
-    
+
 }

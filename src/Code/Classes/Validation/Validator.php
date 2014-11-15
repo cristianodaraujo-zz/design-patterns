@@ -8,9 +8,11 @@ use Code\Classes\Http\Request;
 
 class Validator
 {
-    function __construct(Request $requisicao)
+    protected $request;
+
+    function __construct(Request $request)
     {
-        $requisicao = $requisicao;
+        $this->request = $request;
     }
 
 }

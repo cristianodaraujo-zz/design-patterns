@@ -16,6 +16,7 @@
 
     $request    = new Request();
     $validation = new Validator($request);
+
     $elemento   = new Element();
     $elemento1  = clone $elemento;
 
@@ -83,7 +84,7 @@
     if (!array_search(is_numeric($dados['valor']), $dados) && !empty($dados['valor'])) {
         echo "O valor está vazio ou não é um formato válido! ex:(111.71)";
     } else {
-        $input->setValue('R$ ' . str_ireplace('.', ',', $dados['valor']));
+        $input->setValue($dados['valor']);
     }
 
     $input->createField($elemento2);
@@ -137,7 +138,7 @@
     $option = new Options('option');
     $option->createField($elemento1);
     $option->setParam($categoria[0]['nome']);
-    echo $option->getParam();
+    echo $option->getParam('nome');
     $option->close($elemento1);
 
     $option->createField($elemento1);
