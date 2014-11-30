@@ -7,9 +7,12 @@
         }
     ],
     "license" : "MIT",
-
+    "config":{
+        "bin-dir":"bin/"
+    },
     "require" : {
-        "php" : ">=5.5"
+        "php" : ">=5.5",
+        "phpunit/phpunit": "4.2.6"
     },
     "autoload" : {
         "psr-4" : {
